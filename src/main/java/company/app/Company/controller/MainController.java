@@ -5,6 +5,7 @@ import company.app.Company.repositories.EmployeeRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.*;
 
 import javax.transaction.Transactional;
@@ -57,6 +58,71 @@ public class MainController {
         return "redirect:/employees";
     }
 
+    @Transactional
+    @PostMapping("/delete")
+    public String delete(Model model){
+        List<Employee> employeeList = new ArrayList<>();
+        Iterable<Employee> employeeIterable = employeeRepository.findAll();
 
+        for (Employee employee : employeeIterable) {
+            employeeList.add(employee);
+        }
+
+        model.addAttribute("employees", employeeList);
+        return "delete";
+    }
+
+    @GetMapping("/filter")
+    public String filterPage(Model model){
+        List<Employee> employeeList = new ArrayList<>();
+        Iterable<Employee> employeeIterable = employeeRepository.findAll();
+
+        for (Employee employee : employeeIterable) {
+            employeeList.add(employee);
+        }
+
+        model.addAttribute("filter", employeeList);
+        return "filter";
+    }
+
+//@Transactional
+    @PostMapping("/filterbyname")
+    public String filterByName(Model model, @RequestParam("name") String name){
+        List<Employee> employeeList = new ArrayList<>();
+        Iterable<Employee> employeeIterable = employeeRepository.findByName(name);
+
+        for (Employee employee : employeeIterable) {
+            employeeList.add(employee);
+        }
+
+        model.addAttribute("filter", employeeList);
+        return "filterresult";
+    }
+
+    @PostMapping("/filterbysurname")
+    public String filterBySurname(Model model, @RequestParam("surname") String surname){
+        List<Employee> employeeList = new ArrayList<>();
+        Iterable<Employee> employeeIterable = employeeRepository.findBySurname(surname);
+
+        for (Employee employee : employeeIterable) {
+            employeeList.add(employee);
+        }
+
+        model.addAttribute("filter", employeeList);
+        return "filterresult";
+    }
+
+    @PostMapping("/filterbymail")
+    public String filterByMail(Model model, @RequestParam("mail") String mail){
+        List<Employee> employeeList = new ArrayList<>();
+        Iterable<Employee> employeeIterable = employeeRepository.findByMail(mail);
+
+        for (Employee employee : employeeIterable) {
+            employeeList.add(employee);
+        }
+
+        model.addAttribute("filter", employeeList);
+        return "filterresult";
+    }
 
 }

@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+
+<form th:action="@{/filterbyname}" method="post">
+    <input type="text" th:name="name" placeholder="Name">
+    <input type="submit" value="Filter">
+</form>
+
+<form th:action="@{/filterbysurname}" method="post">
+    <input type="text" th:name="surname" placeholder="Surname">
+    <input type="submit" value="Filter">
+</form>
+
+<form th:action="@{/filterbymail}" method="post">
+    <input type="text" th:name="mail" placeholder="Mail">
+    <input type="submit" value="Filter">
+</form>
+
+<table>
+    <thead>
+    <tr align="center">
+        <th>ID</th>
+        <th>Name</th>
+        <th>Surname</th>
+        <th>Job</th>
+        <th>Mail</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr th:each="filter:${filter}" align="center">
+        <td th:text="${filter.id}"></td>
+        <td th:text="${filter.name}"></td>
+        <td th:text="${filter.surname}"></td>
+        <td th:text="${filter.job}"></td>
+        <td th:text="${filter.mail}"></td>
+    </tr>
+    </tbody>
+
+</table>
+
+</body>
+</html>
