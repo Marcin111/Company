@@ -5,10 +5,9 @@ import company.app.Company.repositories.EmployeeRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.*;
 
+import javax.transaction.Transactional;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -50,6 +49,14 @@ public class MainController {
         model.addAttribute("employees", employeeList);
         return "employees";
     }
+
+    @Transactional
+    @PostMapping("/employees")
+    public String deleteId(@RequestParam("id") Long id){
+        employeeRepository.deleteById(id);
+        return "redirect:/employees";
+    }
+
 
 
 }
