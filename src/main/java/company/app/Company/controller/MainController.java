@@ -51,16 +51,8 @@ public class MainController {
         return "employees";
     }
 
-    @Transactional
-    @PostMapping("/employees")
-    public String deleteId(@RequestParam("id") Long id){
-        employeeRepository.deleteById(id);
-        return "redirect:/employees";
-    }
-
-    @Transactional
-    @PostMapping("/delete")
-    public String delete(Model model){
+    @GetMapping("/delete")
+    public String deletePage(Model model){
         List<Employee> employeeList = new ArrayList<>();
         Iterable<Employee> employeeIterable = employeeRepository.findAll();
 
@@ -70,6 +62,13 @@ public class MainController {
 
         model.addAttribute("employees", employeeList);
         return "delete";
+    }
+
+    @Transactional
+    @PostMapping("/delete")
+    public String deleteById(@RequestParam("id") Long id){
+        employeeRepository.deleteById(id);
+        return "redirect:/delete";
     }
 
     @GetMapping("/filter")
@@ -123,6 +122,12 @@ public class MainController {
 
         model.addAttribute("filter", employeeList);
         return "filterresult";
+    }
+
+    @GetMapping("/job")
+        @ResponseBody
+    public String job(){
+        return employeeRepository.findDistinctCountByJob().toString();
     }
 
 }

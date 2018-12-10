@@ -6,6 +6,10 @@
 </head>
 <body>
 
+<form th:action="@{/delete}" method="post">
+    <input type="text" th:name="id">
+    <input type="submit" value="Delete">
+</form>
 
 <table>
     <thead>
