@@ -3,17 +3,97 @@
 <head>
     <meta charset="UTF-8">
     <title>Title</title>
+
+
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" rel="stylesheet"
+          integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+
+    <link href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet"
+          integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">
+
+    <link th:href="@{/styles.css}" rel="stylesheet"/>
+
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.1.1/css/all.css"
+          integrity="sha384-O8whS3fhG2OnA5Kas0Y9l3cfpmYjapjI0E4theH4iuMD+pLhbf6JI0jIMfYcK3yZ" crossorigin="anonymous">
+
 </head>
 <body>
 
-<form th:action="@{/addemployee}" method="post">
-    <input type="text" th:name="name">
-    <input type="text" th:name="surname">
-    <input type="text" th:name="job">
-    <input type="text" th:name="mail">
-    <input type="submit" value="Add">
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+    <div class="container">
+        <div class="row">
+            <a class="navbar-brand" href="/">Home</a>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav"
+                    aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav">
+                    <li class="nav-item active">
+                        <a class="nav-link" href="/addemployee">Add Employee<span class="sr-only">(current)</span></a>
+                    </li>
+                    <li class="nav-item active">
+                        <a class="nav-link" href="/employees">View Employees<span class="sr-only">(current)</span></a>
+                    </li>
+                    <li class="nav-item active">
+                        <a class="nav-link" href="/delete">Delete Employee<span class="sr-only">(current)</span></a>
+                    </li>
+                    <li class="nav-item active">
+                        <a class="nav-link" href="/filter">Filter Employees<span class="sr-only">(current)</span></a>
+                    </li>
+                    <li class="nav-item active">
+                        <a class="nav-link" href="/job">Jobs Count<span class="sr-only">(current)</span></a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</nav>
 
-</form>
+<div class="container">
+
+    <header>
+        <h1 class="text-center retroshadow">Add Employee</h1>
+    </header>
+
+    <div class="row">
+
+        <form th:action="@{/addemployee}" method="post">
+            <div class="form-group">
+                <label>Name:</label>
+                <input type="text" th:name="name" class="form-control" required>
+            </div>
+            <div class="form-group">
+                <label>Surname:</label>
+                <input type="text" th:name="surname" class="form-control" required>
+            </div>
+            <div class="form-group">
+                <label>Job:</label>
+                <input type="text" th:name="job" class="form-control" required>
+            </div>
+            <div class="form-group">
+                <label>Mail:</label>
+                <input type="text" th:name="mail" class="form-control" required>
+            </div>
+
+            <input type="submit" value="Add">
+
+        </form>
+    </div>
+</div>
+
+<script src="https://code.jquery.com/jquery-3.3.1.min.js"
+        integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
+
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js"
+        integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy"
+        crossorigin="anonymous"></script>
+
+<script src="https://code.jquery.com/jquery-3.3.1.js"
+        integrity="sha256-2Kok7MbOyxpgUVvAk/HJ2jigOSYS2auK4Pfzbm7uH60="
+        crossorigin="anonymous"></script>
+
+<script type="text/javascript" th:src="@{/main.js}"></script>
 
 </body>
 </html>
